@@ -11,13 +11,29 @@
             </div>
             @endif
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     @if(auth()->user()->role == 'admin')
                         <button class="btn btn-outline-dark" onclick="openForm()">Tambah Buku</button>
                     @endif
                     @if(auth()->user()->role == 'siswa')
                         <h4 class="mb-3">Data Buku</h4>
                     @endif
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="filterKategori" class="me-2 mb-0">Filter Kategori</label>
+                        <select id="filterKategori" class="form-select form-select-sm" style="width: 200px;">
+                            <option value="">Semua Kategori</option>
+                            @php
+                                $kategoriList = $buku->pluck('kategori')->unique();
+                            @endphp
+                            @foreach($kategoriList as $kategori)
+                                <option value="{{ $kategori }}">{{ $kategori }}</option>
+                            @endforeach
+                        </select>
+                        
+                        <label for="customSearch" class="mb-0 ms-3">Cari:</label>
+                        <input type="text" id="customSearch" class="form-control form-control-sm" placeholder="Cari buku..." style="width: 200px;">
+
+                    </div>
                 </div>
 
                 {{-- Tombol Tambah Buku --}}
@@ -29,9 +45,8 @@
                                 <th>No</th>
                                 <th>Judul</th>
                                 <th>Penulis</th>
-                                <th>Penerbit</th>
-                                <th>Tahun</th>
-                                <th>Jumlah</th>
+                                <th>Gambar</th>
+                                <th>Kategori</th>
                                 <th>Rak</th>
                                 <th>Status</th>
                                 @if(auth()->user()->role == 'admin')
@@ -45,9 +60,14 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $b->judul }}</td>
                                 <td>{{ $b->penulis }}</td>
-                                <td>{{ $b->penerbit }}</td>
-                                <td>{{ $b->tahun_terbit }}</td>
-                                <td>{{ $b->jumlah }}</td>
+                                <td>
+                                    @if($b->gambar)
+                                        <img src="{{ asset('storage/buku/' . $b->gambar) }}" alt="Gambar Buku" width="120">
+                                    @else
+                                        <span>Tidak ada gambar</span>
+                                    @endif
+                                </td>
+                                <td>{{ $b->kategori }}</td>
                                 <td>{{ $b->lokasi_rak }}</td>
                                 <td>{{ $b->status }}</td>
                                 @if(auth()->user()->role == 'admin')
@@ -73,7 +93,7 @@
             <div class="modal fade" id="bukuModal" tabindex="-1" aria-labelledby="bukuModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form id="bukuForm" method="POST">
+                        <form id="bukuForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_method" id="formMethod" value="POST">
                             <input type="hidden" name="id_buku" id="id_buku">
@@ -102,8 +122,16 @@
                                         min="1900" max="{{ date('Y') }}" required>
                                 </div>
                                 <div class="mb-2">
-                                    <label>Jumlah</label>
-                                    <input type="number" name="jumlah" id="jumlah" class="form-control" required>
+                                    <label>Kategori</label>
+                                    <select name="kategori" id="kategori" class="form-control" required>
+                                        <option value="cerita">Cerita</option>
+                                        <option value="majalah">Majalah</option>
+                                        <option value="pengetahuan">Pengetahuan</option>
+                                        <option value="pembelajaran">Pembelajaran</option>
+                                        <option value="seni">Seni</option>
+                                        <option value="hukum">Hukum</option>
+                                        <option value="sains">Sains</option>
+                                    </select>
                                 </div>
                                 <div class="mb-2">
                                     <label>Lokasi Rak</label>
@@ -116,6 +144,10 @@
                                         <option value="rusak">Rusak</option>
                                         <option value="hilang">Hilang</option>
                                     </select>
+                                </div>
+                                <div class="mb-2">
+                                    <label>Gambar Buku</label>
+                                    <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -135,9 +167,19 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#tabelBuku').DataTable({});
-    });
+        var table = $('#tabelBuku').DataTable({
+            dom: 'lrtip'
+        });
 
+        $('#filterKategori').on('change', function () {
+            var selectedKategori = $(this).val();
+            table.column(4).search(selectedKategori).draw(); // kolom ke-5 (0-based index)
+        });
+
+        $('#customSearch').on('keyup', function () {
+            table.search(this.value).draw();
+        });
+    });
 </script>
 
 <script>
@@ -156,9 +198,10 @@
         $('#penulis').val(data.penulis);
         $('#penerbit').val(data.penerbit);
         $('#tahun_terbit').val(data.tahun_terbit);
-        $('#jumlah').val(data.jumlah);
+        $('#kategori').val(data.kategori);
         $('#lokasi_rak').val(data.lokasi_rak);
         $('#status').val(data.status);
+        $('#gambar').val('');
 
         $('#formMethod').val('PUT');
         $('#bukuForm').attr('action', `/buku/${data.id_buku}`);

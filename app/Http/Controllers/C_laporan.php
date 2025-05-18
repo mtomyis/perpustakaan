@@ -16,4 +16,5 @@ class C_laporan extends Controller
         return view('admin.v_laporan', compact('peminjaman'));
 
     }
+    
 }

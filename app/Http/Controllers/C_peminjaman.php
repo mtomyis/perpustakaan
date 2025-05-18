@@ -52,7 +52,7 @@ class C_peminjaman extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_buku' => 'required',
+            // 'id_buku' => 'required',
             'tanggal_pinjam' => 'required|date',
             'tanggal_jatuh_tempo' => 'required|date|after_or_equal:tanggal_pinjam',
             'jenis_peminjaman' => 'required|in:dibawa_pulang,di_perpustakaan',
@@ -62,7 +62,7 @@ class C_peminjaman extends Controller
         DB::transaction(function () use ($request, $id) {
             $peminjaman = M_peminjaman::findOrFail($id);
             $peminjaman->update([
-                'id_buku' => $request->id_buku,
+                // 'id_buku' => $request->id_buku,
                 'tanggal_pinjam' => $request->tanggal_pinjam,
                 'tanggal_jatuh_tempo' => $request->tanggal_jatuh_tempo,
                 'jenis_peminjaman' => $request->jenis_peminjaman,

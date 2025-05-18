@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('penulis');
             $table->string('penerbit');
             $table->year('tahun_terbit');
-            $table->integer('jumlah');
+            $table->enum('kategori', ['cerita', 'majalah', 'pengetahuan', 'pembelajaran', 'seni', 'hukum', 'sains']);
             $table->string('lokasi_rak', 50);
+            $table->string('gambar')->nullable();
             $table->enum('status', ['tersedia', 'dipinjam','rusak', 'hilang']);
             $table->timestamps();
         });

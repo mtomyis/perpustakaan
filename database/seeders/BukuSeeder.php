@@ -21,8 +21,9 @@ class BukuSeeder extends Seeder
                 'penulis' => 'Andrea Hirata',
                 'penerbit' => 'Bentang Pustaka',
                 'tahun_terbit' => 2005,
-                'jumlah' => 10,
+                'kategori' => 'cerita',
                 'lokasi_rak' => 'A1',
+                'gambar' => 'laskar_pelangi.jpg',
                 'status' => 'tersedia'
             ],
             [
@@ -30,8 +31,9 @@ class BukuSeeder extends Seeder
                 'penulis' => 'Ahmad Fuadi',
                 'penerbit' => 'Gramedia Pustaka Utama',
                 'tahun_terbit' => 2009,
-                'jumlah' => 8,
+                'kategori' => 'cerita',
                 'lokasi_rak' => 'A2',
+                'gambar' => 'negeri_5_menara.jpg',
                 'status' => 'tersedia'
             ],
             [
@@ -39,8 +41,9 @@ class BukuSeeder extends Seeder
                 'penulis' => 'Tere Liye',
                 'penerbit' => 'Gramedia',
                 'tahun_terbit' => 2014,
-                'jumlah' => 7,
+                'kategori' => 'pengetahuan',
                 'lokasi_rak' => 'A3',
+                'gambar' => 'bumi.jpg',
                 'status' => 'tersedia'
             ],
             [
@@ -48,8 +51,9 @@ class BukuSeeder extends Seeder
                 'penulis' => 'Habiburrahman El Shirazy',
                 'penerbit' => 'Republika',
                 'tahun_terbit' => 2004,
-                'jumlah' => 5,
+                'kategori' => 'cerita',
                 'lokasi_rak' => 'A4',
+                'gambar' => 'ayat_ayat_cinta.jpg',
                 'status' => 'tersedia'
             ],
             [
@@ -57,8 +61,9 @@ class BukuSeeder extends Seeder
                 'penulis' => 'Pidi Baiq',
                 'penerbit' => 'Pastel Books',
                 'tahun_terbit' => 2014,
-                'jumlah' => 6,
+                'kategori' => 'cerita',
                 'lokasi_rak' => 'A5',
+                'gambar' => 'dilan_1990.jpg',
                 'status' => 'tersedia'
             ]
         ]);

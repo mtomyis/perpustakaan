@@ -9,6 +9,7 @@ use App\Http\Controllers\C_peminjaman;
 use App\Http\Controllers\C_pengembalian;
 use App\Http\Controllers\C_denda;
 use App\Http\Controllers\C_laporan;
+use App\Http\Controllers\C_dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [C_auth::class, 'logout'])->name('logout');
 
     Route::middleware(['auth', 'role:admin'])->group(function () {
-        Route::get('/dashboard-admin', function () {
-            return view('admin.v_dashboard');
-        })->name('admin.dashboard');
+        Route::get('/dashboard-admin', [C_dashboard::class, 'admin'])->name('admin.dashboard');
 
         Route::resource('buku', C_buku::class);
         Route::resource('buku-tamu', C_buku_tamu::class);
@@ -53,18 +52,12 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(['auth', 'role:kepala_sekolah'])->group(function () {
-        Route::get('/dashboard-kepsek', function () {
-            // dd(Auth::user());
-            return view('kepala.v_dashboard');
-        })->name('kepala.dashboard');
+        Route::get('/dashboard-kepsek', [C_dashboard::class, 'kepala'])->name('kepala.dashboard');
         Route::get('/laporan-kepala', [C_laporan::class, 'index'])->name('laporan.kepala');
     });
 
     Route::middleware(['auth', 'role:siswa'])->group(function () {
-        Route::get('/dashboard-siswa', function () {
-            // dd(Auth::user());
-            return view('siswa.v_dashboard');
-        })->name('siswa.dashboard');
+        Route::get('/dashboard-siswa', [C_dashboard::class, 'siswa'])->name('siswa.dashboard');
         Route::get('/lihat-buku', [C_buku::class, 'index'])->name('lihat.buku');
         Route::get('/lihat-peminjaman', [C_peminjaman::class, 'index'])->name('lihat.peminjaman');
 

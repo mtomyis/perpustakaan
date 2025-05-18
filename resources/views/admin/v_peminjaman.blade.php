@@ -82,9 +82,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-2">
+                    <div id="divIdBuku" class="mb-2">
                         <label>Buku</label>
-                        <select name="id_buku" id="id_buku" class="form-control" required>
+                        <select name="id_buku" id="id_buku" class="form-control">
                             <option value="">Pilih Buku</option>
                             @foreach ($buku as $bk)
                                 <option value="{{ $bk->id_buku }}">{{ $bk->judul }}</option>
@@ -135,6 +135,7 @@
         $('#formMethod').val('POST');
         $('#formPeminjaman').attr('action', "{{ route('peminjaman.store') }}");
         $('#siswa').val(null).trigger('change');
+        $('#divIdBuku').show();
         $('#modalForm').modal('show');
     }
 
@@ -147,6 +148,8 @@
         $('#jenis_peminjaman').val(data.jenis_peminjaman);
         $('#siswa').val(data.siswa.map(s => s.id)).trigger('change');
         $('#formPeminjaman').attr('action', `/peminjaman/${data.id_peminjaman}`);
+        $('#divIdBuku').hide();
+
         $('#modalForm').modal('show');
     }
 </script>
