@@ -8,6 +8,10 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="mb-3">Laporan Transaksi Peminjaman & Pengembalian</h4>
+
+                    <div class="d-flex align-items-center">
+                        <a href="{{ route('cetak.laporan') }}" class="btn btn-success" target="_blank">Print PDF</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
