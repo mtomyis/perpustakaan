@@ -29,8 +29,7 @@ use App\Http\Controllers\C_dashboard;
 Route::get('/', [C_auth::class, 'login'])->name('login');
 Route::get('/login', [C_auth::class, 'login'])->name('login');
 Route::post('/login', [C_auth::class, 'loginProcess'])->name('login.process');
-
-
+Route::get('/cetak-laporan', [C_laporan::class, 'cetak'])->name('cetak.laporan');
 
 Route::middleware('auth')->group(function () {
 
@@ -46,7 +45,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('pengembalian', C_pengembalian::class);
         Route::resource('denda', C_denda::class);
         Route::get('/laporan', [C_laporan::class, 'index'])->name('laporan.transaksi');
-        Route::get('/cetak-laporan', [C_laporan::class, 'cetak'])->name('cetak.laporan');
 
         Route::get('/kirim', [C_pengembalian::class, 'kirim'])->name('kirim');
 

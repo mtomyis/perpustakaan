@@ -33,7 +33,7 @@
     <div class="login-box">
         <div class="login-logo mb-3">
             <img src="{{ asset('logosd.png') }}" alt="" width="80" class="mb-2">
-            <h4>Sekolah Dasar</h4>
+            <h4>SD Negeri Pangkung Tibah</h4>
             <a href="/"><b>Sistem </b>Perpustakaan</a>
         </div>
         <!-- /.login-logo -->

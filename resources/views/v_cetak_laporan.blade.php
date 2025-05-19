@@ -33,6 +33,7 @@
 <body>
 
     <h2>Laporan Transaksi Peminjaman & Pengembalian</h2>
+    <h2>SD Negeri Pangkung Tibah</h2>
 
     <table>
         <thead>
