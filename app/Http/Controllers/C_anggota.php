@@ -35,7 +35,7 @@ class C_anggota extends Controller
             'kontak' => $request->kontak,
         ]);
 
-        return redirect()->route('admin.v_anggota')->with('success', 'Anggota berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Anggota berhasil ditambahkan.');
     }
 
     public function update(Request $request, $id)
@@ -58,12 +58,12 @@ class C_anggota extends Controller
             'kontak' => $request->kontak,
         ]);
 
-        return redirect()->route('admin.v_anggota')->with('success', 'Data anggota berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Data anggota berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
-        return redirect()->route('admin.v_anggota')->with('success', 'Anggota berhasil dihapus.');
+        return redirect()->back()->with('success', 'Anggota berhasil dihapus.');
     }
 }
