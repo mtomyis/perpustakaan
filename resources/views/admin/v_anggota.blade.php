@@ -23,6 +23,7 @@
                             <th>NIS</th>
                             <th>Kelas</th>
                             <th>Kontak</th>
+                            <th>Role</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                             <td>{{ $a->nis }}</td>
                             <td>{{ $a->kelas }}</td>
                             <td>{{ $a->kontak }}</td>
+                            <td>{{ ucfirst($a->role) }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm" onclick='editAnggota(@json($a))'>Edit</button>
                                 <form action="{{ route('anggota.destroy', $a->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?')">
@@ -74,7 +76,7 @@
                         <select name="role" id="role" class="form-control" required>
                             <option value="siswa">Siswa</option>
                             <option value="admin">Admin</option>
-                            <option value="kepsek">Kepala Sekolah</option>
+                            <option value="kepala_sekolah">Kepala Sekolah</option>
                         </select>
                     </div>
                     <div class="mb-2">
