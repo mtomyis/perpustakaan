@@ -81,7 +81,11 @@ class C_pengembalian extends Controller
         $peminjamans = M_peminjaman::where('tanggal_jatuh_tempo', $tomorrow)
                         ->where('status', 'aktif')
                         ->get();
-        
+                        
+        if ($peminjamans->isEmpty()) {
+            return redirect()->back()->with('info', 'Tidak ada buku yang jatuh tempo besok.');
+        }
+
         foreach ($peminjamans as $pinjam) {
             $siswa = $pinjam->siswa;
             $buku = $pinjam->buku;
