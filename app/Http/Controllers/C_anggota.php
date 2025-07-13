@@ -9,7 +9,7 @@ class C_anggota extends Controller
 {
     public function index()
     {
-        $anggota = User::where('role', 'admin')->get();
+        $anggota = User::get();
         return view('admin.v_anggota', compact('anggota'));
     }
 
@@ -17,18 +17,22 @@ class C_anggota extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'role' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            // 'nis' => 'nullable',
-            // 'kelas' => 'nullable',
-            // 'kontak' => 'nullable',
+            'nis' => 'nullable',
+            'kelas' => 'nullable',
+            'kontak' => 'nullable',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'admin',
+            'role' => $request->role,
+            'nis' => $request->nis,
+            'kelas' => $request->kelas, 
+            'kontak' => $request->kontak,
         ]);
 
         return redirect()->route('admin.v_anggota')->with('success', 'Anggota berhasil ditambahkan.');

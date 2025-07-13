@@ -20,9 +20,9 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            {{-- <th>NIS</th>d --}}
-                            {{-- <th>Kelas</th> --}}
-                            {{-- <th>Kontak</th> --}}
+                            <th>NIS</th>
+                            <th>Kelas</th>
+                            <th>Kontak</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -32,9 +32,9 @@
                             <td>{{ $i + 1 }}</td>
                             <td>{{ $a->name }}</td>
                             <td>{{ $a->email }}</td>
-                            {{-- <td>{{ $a->nis }}</td>
+                            <td>{{ $a->nis }}</td>
                             <td>{{ $a->kelas }}</td>
-                            <td>{{ $a->kontak }}</td> --}}
+                            <td>{{ $a->kontak }}</td>
                             <td>
                                 <button class="btn btn-warning btn-sm" onclick='editAnggota(@json($a))'>Edit</button>
                                 <form action="{{ route('anggota.destroy', $a->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?')">
@@ -70,6 +70,14 @@
                         <input type="text" name="name" id="name" class="form-control" required>
                     </div>
                     <div class="mb-2">
+                        <label>Role</label>
+                        <select name="role" id="role" class="form-control" required>
+                            <option value="siswa">Siswa</option>
+                            <option value="admin">Admin</option>
+                            <option value="kepsek">Kepala Sekolah</option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
                         <label>Email</label>
                         <input type="email" name="email" id="email" class="form-control" required>
                     </div>
@@ -78,7 +86,7 @@
                         <input type="password" name="password" id="password" class="form-control">
                         <small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
                     </div>
-                    {{-- <div class="mb-2">
+                    <div class="mb-2">
                         <label>NIS</label>
                         <input type="text" name="nis" id="nis" class="form-control">
                     </div>
@@ -89,7 +97,7 @@
                     <div class="mb-2">
                         <label>Kontak</label>
                         <input type="text" name="kontak" id="kontak" class="form-control">
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Simpan</button>
@@ -118,10 +126,11 @@
         $('#formMethod').val('PUT');
         $('#id').val(data.id);
         $('#name').val(data.name);
+        $('#role').val(data.role);
         $('#email').val(data.email);
-        // $('#nis').val(data.nis);
-        // $('#kelas').val(data.kelas);
-        // $('#kontak').val(data.kontak);
+        $('#nis').val(data.nis);
+        $('#kelas').val(data.kelas);
+        $('#kontak').val(data.kontak);
         $('#password').val('');
         $('.password-row').hide(); // sembunyikan input password saat edit
         $('#formAnggota').attr('action', `/anggota/${data.id}`);
