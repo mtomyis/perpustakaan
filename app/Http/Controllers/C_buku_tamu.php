@@ -19,7 +19,9 @@ class C_buku_tamu extends Controller
     {
         $request->validate([
             'nama_pengunjung' => 'required|string|max:100',
+            'instansi' => 'required|string|max:100',
             'tanggal_kunjungan' => 'required|date',
+            'jam_masuk' => 'required|date_format:H:i',
             'keperluan' => 'required|string',
         ]);
 
@@ -33,7 +35,9 @@ class C_buku_tamu extends Controller
     {
         $request->validate([
             'nama_pengunjung' => 'required|string|max:100',
+            'instansi' => 'required|string|max:100',
             'tanggal_kunjungan' => 'required|date',
+            'jam_masuk' => 'required|date_format:H:i',
             'keperluan' => 'required|string',
         ]);
 

@@ -20,8 +20,8 @@
                             <th>No</th>
                             <th>Buku</th>
                             <th>Tanggal Kembali</th>
-                            <th>Total Denda</th>
-                            <th>Sisa Denda</th>
+                            {{-- <th>Total Denda</th> --}}
+                            {{-- <th>Sisa Denda</th> --}}
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -32,8 +32,8 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $item->pengembalian->peminjaman->buku->judul ?? '-' }}</td>
                                 <td>{{ $item->pengembalian->tanggal_kembali }}</td>
-                                <td>Rp{{ number_format($item->total_denda, 2, ',', '.') }}</td>
-                                <td>Rp{{ number_format($item->sisa_denda, 2, ',', '.') }}</td>
+                                {{-- <td>Rp{{ number_format($item->total_denda, 2, ',', '.') }}</td> --}}
+                                {{-- <td>Rp{{ number_format($item->sisa_denda, 2, ',', '.') }}</td> --}}
                                 <td>{{ ucfirst($item->status_pembayaran) }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" onclick='editDenda(@json($item))'>Edit</button>
@@ -74,20 +74,19 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>Total Denda</label>
                         <input type="number" step="0.01" name="total_denda" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label>Sisa Denda</label>
                         <input type="number" step="0.01" name="sisa_denda" class="form-control" required>
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
-                        <label>Status Pembayaran</label>
+                        <label>Status Denda</label>
                         <select name="status_pembayaran" class="form-select" required>
+                            <option value="lunas">Lunas (Ganti Baru)</option>
                             <option value="belum_lunas">Belum Lunas</option>
-                            <option value="cicilan">Cicilan</option>
-                            <option value="lunas">Lunas</option>
                         </select>
                     </div>
                 </div>
@@ -114,8 +113,8 @@
         $('#formMethod').val('PUT');
         $('#formDenda').attr('action', '/denda/' + data.id_denda);
         $('[name="id_pengembalian"]').val(data.id_pengembalian);
-        $('[name="total_denda"]').val(data.total_denda);
-        $('[name="sisa_denda"]').val(data.sisa_denda);
+        // $('[name="total_denda"]').val(data.total_denda);
+        // $('[name="sisa_denda"]').val(data.sisa_denda);
         $('[name="status_pembayaran"]').val(data.status_pembayaran);
         $('#modalForm').modal('show');
     }

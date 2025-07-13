@@ -70,12 +70,24 @@
                         <p>Laporan</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/laporan_tamu" class="nav-link">
+                        <i class="nav-icon bi bi-clipboard-fill"></i>
+                        <p>Laporan Tamu</p>
+                    </a>
+                </li>
                 @endif
                 @if(auth()->user()->role == 'kepala_sekolah')
                 <li class="nav-item">
                     <a href="/laporan-kepala" class="nav-link">
                         <i class="nav-icon bi bi-clipboard-fill"></i>
                         <p>Laporan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/laporan_tamu-kepala" class="nav-link">
+                        <i class="nav-icon bi bi-clipboard-fill"></i>
+                        <p>Laporan Tamu</p>
                     </a>
                 </li>
                 @endif

@@ -22,7 +22,7 @@ class BukuSeeder extends Seeder
                 'penerbit' => 'Bentang Pustaka',
                 'tahun_terbit' => 2005,
                 'kategori' => 'cerita',
-                'lokasi_rak' => 'A1',
+                'lokasi_rak' => '1',
                 'gambar' => 'laskar_pelangi.jpg',
                 'status' => 'tersedia'
             ],
@@ -32,7 +32,7 @@ class BukuSeeder extends Seeder
                 'penerbit' => 'Gramedia Pustaka Utama',
                 'tahun_terbit' => 2009,
                 'kategori' => 'cerita',
-                'lokasi_rak' => 'A2',
+                'lokasi_rak' => '2',
                 'gambar' => 'negeri_5_menara.jpg',
                 'status' => 'tersedia'
             ],
@@ -42,7 +42,7 @@ class BukuSeeder extends Seeder
                 'penerbit' => 'Gramedia',
                 'tahun_terbit' => 2014,
                 'kategori' => 'pengetahuan',
-                'lokasi_rak' => 'A3',
+                'lokasi_rak' => '3',
                 'gambar' => 'bumi.jpg',
                 'status' => 'tersedia'
             ],
@@ -52,7 +52,7 @@ class BukuSeeder extends Seeder
                 'penerbit' => 'Republika',
                 'tahun_terbit' => 2004,
                 'kategori' => 'cerita',
-                'lokasi_rak' => 'A4',
+                'lokasi_rak' => '4',
                 'gambar' => 'ayat_ayat_cinta.jpg',
                 'status' => 'tersedia'
             ],
@@ -62,7 +62,7 @@ class BukuSeeder extends Seeder
                 'penerbit' => 'Pastel Books',
                 'tahun_terbit' => 2014,
                 'kategori' => 'cerita',
-                'lokasi_rak' => 'A5',
+                'lokasi_rak' => '5',
                 'gambar' => 'dilan_1990.jpg',
                 'status' => 'tersedia'
             ]

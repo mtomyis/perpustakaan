@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('buku_tamu', function (Blueprint $table) {
             $table->id('id_tamu');
             $table->string('nama_pengunjung', 100);
+            $table->text('instansi');
             $table->date('tanggal_kunjungan');
+            $table->time('jam_masuk');
             $table->text('keperluan');
             $table->timestamps();
         });        

@@ -14,8 +14,8 @@ class M_denda extends Model
 
     protected $fillable = [
         'id_pengembalian',
-        'total_denda',
-        'sisa_denda',
+        // 'total_denda',
+        // 'sisa_denda',
         'status_pembayaran',
     ];
 

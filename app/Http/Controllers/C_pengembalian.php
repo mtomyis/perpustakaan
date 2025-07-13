@@ -37,6 +37,7 @@ class C_pengembalian extends Controller
         };
 
         $status_buku = match ($request->kondisi_buku) {
+            'baik' => 'baik',
             'rusak' => 'rusak',
             'hilang' => 'hilang',
             default => 'tersedia',
@@ -51,7 +52,12 @@ class C_pengembalian extends Controller
 
         // update status peminjaman jadi selesai
         $pengembalian->peminjaman->update(['status' => 'selesai']);
-        $pengembalian->peminjaman->buku->update(['status' => $status_buku]);
+
+        if ($status_buku === 'hilang') {
+            $pengembalian->peminjaman->buku->update(['status' => 'hilang']); 
+        }else{
+            $pengembalian->peminjaman->buku->update(['status' => 'tersedia']);
+        }
 
         return redirect()->back()->with('success', 'Pengembalian berhasil ditambahkan.');
     }

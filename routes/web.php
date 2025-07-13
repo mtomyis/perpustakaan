@@ -30,6 +30,7 @@ Route::get('/', [C_auth::class, 'login'])->name('login');
 Route::get('/login', [C_auth::class, 'login'])->name('login');
 Route::post('/login', [C_auth::class, 'loginProcess'])->name('login.process');
 Route::get('/cetak-laporan', [C_laporan::class, 'cetak'])->name('cetak.laporan');
+Route::get('/cetak-laporan_tamu', [C_laporan::class, 'cetak_tamu'])->name('cetak.laporan.tamu');
 
 Route::middleware('auth')->group(function () {
 
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('pengembalian', C_pengembalian::class);
         Route::resource('denda', C_denda::class);
         Route::get('/laporan', [C_laporan::class, 'index'])->name('laporan.transaksi');
+        Route::get('/laporan_tamu', [C_laporan::class, 'index_tamu'])->name('laporan.tamu');
 
         Route::get('/kirim', [C_pengembalian::class, 'kirim'])->name('kirim');
 
@@ -53,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['auth', 'role:kepala_sekolah'])->group(function () {
         Route::get('/dashboard-kepsek', [C_dashboard::class, 'kepala'])->name('kepala.dashboard');
         Route::get('/laporan-kepala', [C_laporan::class, 'index'])->name('laporan.kepala');
+        Route::get('/laporan_tamu-kepala', [C_laporan::class, 'index_tamu'])->name('laporan.kepala.tamu');
     });
 
     Route::middleware(['auth', 'role:siswa'])->group(function () {

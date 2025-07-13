@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('denda', function (Blueprint $table) {
             $table->id('id_denda');
             $table->unsignedBigInteger('id_pengembalian');
-            $table->decimal('total_denda', 10, 2);
-            $table->decimal('sisa_denda', 10, 2);
-            $table->enum('status_pembayaran', ['belum_lunas', 'cicilan', 'lunas']);
+            // $table->decimal('total_denda', 10, 2);
+            // $table->decimal('sisa_denda', 10, 2);
+            $table->enum('status_pembayaran', ['belum_lunas', 'lunas']);
             $table->timestamps();
         
             $table->foreign('id_pengembalian')->references('id_pengembalian')->on('pengembalian')->onDelete('cascade');

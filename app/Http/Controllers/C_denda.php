@@ -11,7 +11,7 @@ class C_denda extends Controller
     public function index()
     {
         $denda = M_denda::with('pengembalian.peminjaman.buku')->get();
-        $pengembalian = M_pengembalian::with('peminjaman.buku')->get();
+        $pengembalian = M_pengembalian::with('peminjaman.buku')->where('kondisi_buku', 'hilang')->get();
 
         return view('admin.v_denda', compact('denda', 'pengembalian'));
     }
@@ -20,12 +20,21 @@ class C_denda extends Controller
     {
         $request->validate([
             'id_pengembalian' => 'required',
-            'total_denda' => 'required|numeric',
-            'sisa_denda' => 'required|numeric',
+            // 'total_denda' => 'required|numeric',
+            // 'sisa_denda' => 'required|numeric',
             'status_pembayaran' => 'required',
         ]);
 
         M_denda::create($request->all());
+        if ($request->status_pembayaran === 'lunas') {
+            $pengembalian = M_pengembalian::with('peminjaman.buku')
+                            ->where('id_pengembalian', $request->id_pengembalian)
+                            ->first();
+            if ($pengembalian) {
+                $pengembalian->update(['status_pengembalian' => 'selesai', 'kondisi_buku' => 'baik']);
+                $pengembalian->peminjaman->buku->update(['status' => 'tersedia']);
+            }
+        }
 
         return redirect()->back()->with('success', 'Data denda berhasil ditambahkan.');
     }
@@ -34,12 +43,22 @@ class C_denda extends Controller
     {
         $request->validate([
             'id_pengembalian' => 'required',
-            'total_denda' => 'required|numeric',
-            'sisa_denda' => 'required|numeric',
+            // 'total_denda' => 'required|numeric',
+            // 'sisa_denda' => 'required|numeric',
             'status_pembayaran' => 'required',
         ]);
 
         M_denda::findOrFail($id)->update($request->all());
+        if ($request->status_pembayaran === 'lunas') {
+            $pengembalian = M_pengembalian::with('peminjaman.buku')
+                            ->where('id_pengembalian', $request->id_pengembalian)
+                            ->first();
+            if ($pengembalian) {
+                $pengembalian->update(['status_pengembalian' => 'selesai', 'kondisi_buku' => 'baik']);
+                $pengembalian->peminjaman->buku->update(['status' => 'tersedia']);
+            }
+        }
+
 
         return redirect()->back()->with('success', 'Data denda berhasil diperbarui.');
     }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('penerbit');
             $table->year('tahun_terbit');
             $table->enum('kategori', ['cerita', 'majalah', 'pengetahuan', 'pembelajaran', 'seni', 'hukum', 'sains']);
-            $table->string('lokasi_rak', 50);
+            $table->enum('lokasi_rak', [1, 2, 3, 4, 5, 6, 7]);
             $table->string('gambar')->nullable();
             $table->enum('status', ['tersedia', 'dipinjam','rusak', 'hilang']);
             $table->timestamps();

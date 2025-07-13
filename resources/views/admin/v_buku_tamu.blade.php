@@ -20,7 +20,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Pengunjung</th>
+                                <th>Instansi</th>
                                 <th>Tanggal Kunjungan</th>
+                                <th>Jam Masuk</th>
                                 <th>Keperluan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -30,7 +32,9 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $tamu->nama_pengunjung }}</td>
+                                <td>{{ $tamu->instansi }}</td>
                                 <td>{{ $tamu->tanggal_kunjungan }}</td>
+                                <td>{{ $tamu->jam_masuk }}</td>
                                 <td>{{ $tamu->keperluan }}</td>
                                 <td>
                                     <button class="btn btn-warning btn-sm" onclick='editTamu(@json($tamu))'>Edit</button>
@@ -65,9 +69,15 @@
                                     <input type="text" name="nama_pengunjung" id="nama_pengunjung" class="form-control" required>
                                 </div>
                                 <div class="mb-2">
+                                    <label>Instansi</label>
+                                    <input type="text" name="instansi" id="instansi" class="form-control" required>
+                                <div class="mb-2">
                                     <label>Tanggal Kunjungan</label>
                                     <input type="date" name="tanggal_kunjungan" id="tanggal_kunjungan" class="form-control" required>
                                 </div>
+                                <div class="mb-2">
+                                    <label>Jam Masuk</label>
+                                    <input type="time" name="jam_masuk" id="jam_masuk" class="form-control" required>
                                 <div class="mb-2">
                                     <label>Keperluan</label>
                                     <textarea name="keperluan" id="keperluan" class="form-control" rows="3" required></textarea>

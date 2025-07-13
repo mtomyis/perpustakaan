@@ -11,5 +11,5 @@ class M_buku_tamu extends Model
 
     protected $table = 'buku_tamu';
     protected $primaryKey = 'id_tamu';
-    protected $fillable = ['nama_pengunjung', 'tanggal_kunjungan', 'keperluan'];
+    protected $fillable = ['nama_pengunjung', 'instansi', 'tanggal_kunjungan', 'jam_masuk', 'keperluan'];
 }
